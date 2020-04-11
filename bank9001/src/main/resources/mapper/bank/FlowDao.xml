@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nnxy.bank.dao.FlowDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.nnxy.bank.entity.FlowEntity" id="flowMap">
+        <result property="fId" column="f_id"/>
+        <result property="fMoney" column="f_money"/>
+        <result property="fType" column="f_type"/>
+        <result property="aId" column="a_id"/>
+        <result property="fDate" column="f_date"/>
+    </resultMap>
+
+
+</mapper>

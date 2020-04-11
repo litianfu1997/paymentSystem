@@ -1,0 +1,34 @@
+spring:
+  cloud:
+    nacos: #nacos服务发现
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      routes:
+        - id: baidu_route
+          uri: https://www.baidu.com
+          predicates:
+            - Query=url,baidu
+        - id: bank_route #银行服务路由
+          uri: lb://bank-service
+          predicates:
+            - Path=/api/bank/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+        - id: bank_route #支付服务路由
+          uri: lb://payment-service
+          predicates:
+            - Path=/api/payment/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+        - id: admin_route #管理服务路由
+          uri: lb://renren-fast
+          predicates:
+            - Path=/api/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/renren-fast/$\{segment}
+  application:
+    name: gateway-service
+
+server:
+  port: 86

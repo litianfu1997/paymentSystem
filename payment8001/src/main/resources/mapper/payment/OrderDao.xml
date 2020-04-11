@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nnxy.payment.dao.OrderDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.nnxy.payment.entity.OrderEntity" id="orderMap">
+        <result property="orderId" column="order_id"/>
+        <result property="orderAccount" column="order_account"/>
+        <result property="flowId" column="flow_id"/>
+        <result property="descs" column="descs"/>
+        <result property="aId" column="a_id"/>
+    </resultMap>
+
+
+</mapper>

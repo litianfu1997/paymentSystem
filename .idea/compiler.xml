@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="bank9001" />
+        <module name="consumer81" />
+        <module name="gateway" />
+        <module name="payment-commons" />
+        <module name="payment8001" />
+        <module name="renren-fast" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="bank9002" target="1.8" />
+      <module name="generator" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="bank9001" options="-parameters" />
+      <module name="bank9002" options="-parameters" />
+      <module name="consumer81" options="-parameters" />
+      <module name="gateway" options="-parameters" />
+      <module name="payment8001" options="-parameters" />
+      <module name="renren-fast" options="-parameters" />
+    </option>
+  </component>
+</project>
