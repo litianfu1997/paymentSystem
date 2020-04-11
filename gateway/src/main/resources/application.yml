@@ -5,17 +5,13 @@ spring:
         server-addr: 127.0.0.1:8848
     gateway:
       routes:
-        - id: baidu_route
-          uri: https://www.baidu.com
-          predicates:
-            - Query=url,baidu
-        - id: bank_route #银行服务路由
+        - id: bank_route1 #前端银行服务路由
           uri: lb://bank-service
           predicates:
             - Path=/api/bank/**
           filters:
             - RewritePath=/api/(?<segment>.*),/$\{segment}
-        - id: bank_route #支付服务路由
+        - id: payment_route1 #前端支付服务路由
           uri: lb://payment-service
           predicates:
             - Path=/api/payment/**
