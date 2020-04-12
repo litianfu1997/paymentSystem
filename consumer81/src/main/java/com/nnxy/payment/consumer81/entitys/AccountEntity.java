@@ -32,7 +32,7 @@ public class AccountEntity implements Serializable {
 	/**
 	 * 账户余额
 	 */
-	private Long aMoney;
+	private Double aMoney;
 
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
@@ -50,7 +50,7 @@ public class AccountEntity implements Serializable {
 		return aPassword;
 	}
 
-	public Long getaMoney() {
+	public Double getaMoney() {
 		return aMoney;
 	}
 
@@ -66,7 +66,7 @@ public class AccountEntity implements Serializable {
 		this.aPassword = aPassword;
 	}
 
-	public void setaMoney(Long aMoney) {
+	public void setaMoney(Double aMoney) {
 		this.aMoney = aMoney;
 	}
 }

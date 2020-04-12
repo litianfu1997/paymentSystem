@@ -2,12 +2,13 @@ package com.nnxy.payment.consumer81.controller;
 
 import com.nnxy.common.utils.R;
 import com.nnxy.payment.consumer81.entitys.AccountEntity;
+import com.nnxy.payment.consumer81.entitys.AllEntity;
+import com.nnxy.payment.consumer81.entitys.FlowEntity;
+import com.nnxy.payment.consumer81.entitys.OrderEntity;
 import com.nnxy.payment.consumer81.feign.BankServiceFeign;
+import com.nnxy.payment.consumer81.service.ConsumerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author litianfu
@@ -20,6 +21,9 @@ public class ConsumerController {
 
     @Autowired
     private BankServiceFeign bankServiceFeign;
+
+    @Autowired
+    private ConsumerService consumerService;
 
     @GetMapping("/test")
     public String test(){
@@ -52,7 +56,7 @@ public class ConsumerController {
      * @param accountEntity
      * @return
      */
-    @PostMapping("/bank/account/recharge")
+    @PostMapping("/recharge")
     public R recharge(@RequestBody AccountEntity accountEntity){
         return bankServiceFeign.recharge(accountEntity);
     }
@@ -62,8 +66,19 @@ public class ConsumerController {
      * @param accountEntity
      * @return
      */
-    @PostMapping("/bank/account/checkingBalance")
+    @PostMapping("/checkingBalance")
     public R checkingBalance(@RequestBody AccountEntity accountEntity){
         return bankServiceFeign.checkingBalance(accountEntity);
     }
+
+    /**
+     * 支付
+     */
+    @PostMapping("/payment")
+    public R payment(@RequestBody AllEntity allEntity){
+        System.out.println("支付中");
+        return consumerService.payment(allEntity.getAccountEntity(),allEntity.getFlowEntity(),allEntity.getOrderEntity());
+
+    }
+
 }

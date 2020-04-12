@@ -7,6 +7,7 @@ import java.util.Map;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.nnxy.bank.entity.AccountEntity;
+import com.nnxy.bank.entity.FlowEntity;
 import com.nnxy.bank.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -106,6 +107,21 @@ public class AccountController {
             return R.error(444, "用户不存在");
         }
         return R.ok("余额查询成功").put("money",account.getaMoney());
+    }
+
+    /**
+     * 通过id获取账户
+     * @param accountEntity
+     * @return
+     */
+    @RequestMapping("/getById")
+    public R getById(@RequestBody AccountEntity accountEntity){
+        QueryWrapper<AccountEntity> queryWrapper = new QueryWrapper<>();
+        AccountEntity one = accountService.getOne(queryWrapper.eq("a_id", accountEntity.getaId()));
+        if (one == null){
+            return R.error(444,"该订单不存在");
+        }
+        return R.ok("查询成功").put("account",one);
     }
 
     /**

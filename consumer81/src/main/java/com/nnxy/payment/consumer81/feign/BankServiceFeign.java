@@ -1,11 +1,14 @@
 package com.nnxy.payment.consumer81.feign;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.nnxy.common.utils.R;
 import com.nnxy.payment.consumer81.entitys.AccountEntity;
+import com.nnxy.payment.consumer81.entitys.FlowEntity;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author litianfu
@@ -50,6 +53,53 @@ public interface BankServiceFeign {
      */
     @PostMapping("/bank/account/checkingBalance")
     public R checkingBalance(@RequestBody AccountEntity accountEntity);
+
+    /**
+     * 修改
+     */
+    @RequestMapping("/bank/account/update")
+    public R update(@RequestBody AccountEntity account);
+
+    /**
+     * 新增流水
+     * @param flowEntity
+     * @return
+     */
+    @PostMapping("/bank/flow/insert")
+    public R insert(@RequestBody FlowEntity flowEntity);
+
+    /**
+     * 删除流水
+     * @param flowEntity
+     * @return
+     */
+    @DeleteMapping("/bank/flow/delete")
+    public R delete(@RequestBody FlowEntity flowEntity);
+
+    /**
+     * 通过订单id获取订单
+     * @param flowEntity
+     * @return
+     */
+    @RequestMapping("/bank/flow/getById")
+    public R getById(@RequestBody FlowEntity flowEntity);
+
+    /**
+     * 通过账户查询所有流水信息
+     * @param flowEntity
+     * @return
+     */
+    @RequestMapping("/bank/flow/getFlowList")
+    public R getFlowList(@RequestBody FlowEntity flowEntity);
+
+    /**
+     * 更新流水
+     * @param flowEntity
+     * @return
+     */
+    @RequestMapping("/bank/flow/updateFlow")
+    public R updateFlow(@RequestBody FlowEntity flowEntity);
+
 
 
 }

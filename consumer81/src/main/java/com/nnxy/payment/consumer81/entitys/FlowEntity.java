@@ -25,7 +25,7 @@ public class FlowEntity implements Serializable {
 	/**
 	 * 金额
 	 */
-	private Long fMoney;
+	private Double fMoney;
 	/**
 	 * 类型
 	 */
@@ -51,11 +51,11 @@ public class FlowEntity implements Serializable {
 		this.fId = fId;
 	}
 
-	public Long getfMoney() {
+	public Double getfMoney() {
 		return fMoney;
 	}
 
-	public void setfMoney(Long fMoney) {
+	public void setfMoney(Double fMoney) {
 		this.fMoney = fMoney;
 	}
 

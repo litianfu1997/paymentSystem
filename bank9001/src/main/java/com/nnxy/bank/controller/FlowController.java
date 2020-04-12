@@ -1,17 +1,16 @@
 package com.nnxy.bank.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.nnxy.bank.entity.FlowEntity;
 import com.nnxy.bank.service.FlowService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.nnxy.common.utils.PageUtils;
 import com.nnxy.common.utils.R;
@@ -30,6 +29,80 @@ import com.nnxy.common.utils.R;
 public class FlowController {
     @Autowired
     private FlowService flowService;
+
+
+
+    /**
+     * 新增流水
+     * @param flowEntity
+     * @return
+     */
+    @PostMapping("/insert")
+    public R insert(@RequestBody FlowEntity flowEntity){
+        boolean b = flowService.save(flowEntity);
+        if(b == false){
+            return R.error(444,"插入数据失败");
+        }
+        return R.ok("数据插入成功");
+    }
+
+    /**
+     * 删除流水
+     * @param flowEntity
+     * @return
+     */
+    @DeleteMapping("/delete")
+    public R delete(@RequestBody FlowEntity flowEntity){
+        QueryWrapper<FlowEntity> queryWrapper = new QueryWrapper<>();
+        boolean b = flowService.remove(queryWrapper.eq("f_id", flowEntity.getfId()));
+        if (b == false){
+            return R.error(444,"删除失败");
+        }
+        return R.ok("删除成功");
+    }
+
+    /**
+     * 通过id获取流水
+     * @param flowEntity
+     * @return
+     */
+    @RequestMapping("/getById")
+    public R getById(@RequestBody FlowEntity flowEntity){
+        QueryWrapper<FlowEntity> queryWrapper = new QueryWrapper<>();
+        FlowEntity one = flowService.getOne(queryWrapper.eq("f_id", flowEntity.getfId()));
+        if (one == null){
+            return R.error(444,"该订单不存在");
+        }
+        return R.ok("查询成功").put("flow",one);
+    }
+
+    /**
+     * 通过账户查询所有流水信息
+     * @param flowEntity
+     * @return
+     */
+    @RequestMapping("/getFlowList")
+    public R getFlowList(@RequestBody FlowEntity flowEntity){
+        QueryWrapper<FlowEntity> queryWrapper = new QueryWrapper<>();
+        List<FlowEntity> list = flowService.list(queryWrapper.eq("a_id", flowEntity.getaId()));
+        return R.ok("查询成功").put("orders",list);
+    }
+
+    @RequestMapping("/updateFlow")
+    public R updateFlow(@RequestBody FlowEntity flowEntity){
+        boolean b = flowService.update(flowEntity, new UpdateWrapper<FlowEntity>()
+                .eq("f_id", flowEntity.getfId()));
+
+        if (b==false){
+            return R.error(444,"更新失败");
+        }
+        return R.ok("更新成功");
+    }
+
+
+
+
+
 
     /**
      * 列表
