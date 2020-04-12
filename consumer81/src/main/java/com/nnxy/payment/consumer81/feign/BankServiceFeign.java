@@ -107,6 +107,6 @@ public interface BankServiceFeign {
      * @return
      */
     @RequestMapping("/bank/account/getAccountById")
-    public R getAccountById(@RequestBody AccountEntity accountEntity);
+    public AccountEntity getAccountById(@RequestBody AccountEntity accountEntity);
 
 }

@@ -115,16 +115,17 @@ public class ConsumerService {
         FlowEntity targetFlowEntity = new FlowEntity();
         long millis2 = System.currentTimeMillis();
         targetFlowEntity.setaId(millis2);
+        //查找对应账户
+        AccountEntity a = new AccountEntity();
+        a.setaAccount(target);
+        AccountEntity newAccount = bankServiceFeign.getAccountById(a);
         BeanUtils.copyProperties(flowEntity,targetFlowEntity);
+        targetFlowEntity.setaId(newAccount.getaId());
+        targetFlowEntity.setfType("收入");
         R r5 = bankServiceFeign.insert(targetFlowEntity);
         //5.己方扣减余额，对方增加余额
         accountEntity.setaMoney(money - flowEntity.getfMoney());
         R r2 = bankServiceFeign.update(accountEntity);
-        //查找对应账户
-        AccountEntity a = new AccountEntity();
-        a.setaAccount(target);
-        R rAccount = bankServiceFeign.getAccountById(a);
-        AccountEntity newAccount = (AccountEntity) rAccount.get("account");
         //对方增加余额
         newAccount.setaMoney(newAccount.getaMoney() + flowEntity.getfMoney());
         R r4 = bankServiceFeign.update(newAccount);
@@ -133,6 +134,7 @@ public class ConsumerService {
         orderEntity.setFlowId(millis1);
         R r3 = paymentServiceFeign.updateOrder(orderEntity);
         targetOrderEntity.setFlowId(millis2);
+        targetOrderEntity.setaId(newAccount.getaId());
         R r6 = paymentServiceFeign.updateOrder(targetOrderEntity);
         Integer code1 = (Integer) r1.get("code");
         Integer code2 = (Integer) r2.get("code");
