@@ -26,48 +26,52 @@ public class ConsumerController {
     private ConsumerService consumerService;
 
     @GetMapping("/test")
-    public String test(){
+    public String test() {
         System.out.println("我是consumer，我准备调用bank9001服务");
         return bankServiceFeign.test();
     }
 
     /**
      * 登录
+     *
      * @param accountEntity
      * @return
      */
     @PostMapping("/login")
-    public R login(AccountEntity accountEntity){
+    public R login(AccountEntity accountEntity) {
         return bankServiceFeign.login(accountEntity);
     }
 
     /**
      * 注册
+     *
      * @param accountEntity
      * @return
      */
     @PostMapping("/register")
-    public R register(AccountEntity accountEntity){
+    public R register(AccountEntity accountEntity) {
         return bankServiceFeign.register(accountEntity);
     }
 
     /**
      * 充值
+     *
      * @param accountEntity
      * @return
      */
     @PostMapping("/recharge")
-    public R recharge(@RequestBody AccountEntity accountEntity){
+    public R recharge(@RequestBody AccountEntity accountEntity) {
         return bankServiceFeign.recharge(accountEntity);
     }
 
     /**
      * 查询余额
+     *
      * @param accountEntity
      * @return
      */
     @PostMapping("/checkingBalance")
-    public R checkingBalance(@RequestBody AccountEntity accountEntity){
+    public R checkingBalance(@RequestBody AccountEntity accountEntity) {
         return bankServiceFeign.checkingBalance(accountEntity);
     }
 
@@ -75,10 +79,20 @@ public class ConsumerController {
      * 支付
      */
     @PostMapping("/payment")
-    public R payment(@RequestBody AllEntity allEntity){
-        System.out.println("支付中");
-        return consumerService.payment(allEntity.getAccountEntity(),allEntity.getFlowEntity(),allEntity.getOrderEntity());
+    public R payment(@RequestBody AllEntity allEntity) {
+        System.out.println("支付中。。。。。。。。。。。。。");
+        return consumerService.payment(allEntity.getAccountEntity(), allEntity.getFlowEntity(), allEntity.getOrderEntity());
 
+    }
+
+    /**
+     * @return
+     */
+    @PostMapping("/transfer")
+    public R transfer(@RequestBody AllEntity allEntity) {
+        System.out.println("转账中。。。。。。。。。。。。。。。。");
+        return consumerService.transfer(allEntity.getAccountEntity(), allEntity.getTarget(),
+                allEntity.getFlowEntity(), allEntity.getOrderEntity());
     }
 
 }

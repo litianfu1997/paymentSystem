@@ -13,4 +13,5 @@ public class AllEntity {
     private AccountEntity accountEntity;
     private FlowEntity flowEntity;
     private OrderEntity orderEntity;
+    private String target;
 }

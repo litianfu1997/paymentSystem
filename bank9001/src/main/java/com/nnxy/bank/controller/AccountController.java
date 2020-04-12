@@ -110,14 +110,14 @@ public class AccountController {
     }
 
     /**
-     * 通过id获取账户
+     * 通过账户号获取账户
      * @param accountEntity
      * @return
      */
-    @RequestMapping("/getById")
-    public R getById(@RequestBody AccountEntity accountEntity){
+    @RequestMapping("/getAccountById")
+    public R getAccountById(@RequestBody AccountEntity accountEntity){
         QueryWrapper<AccountEntity> queryWrapper = new QueryWrapper<>();
-        AccountEntity one = accountService.getOne(queryWrapper.eq("a_id", accountEntity.getaId()));
+        AccountEntity one = accountService.getOne(queryWrapper.eq("a_account", accountEntity.getaAccount()));
         if (one == null){
             return R.error(444,"该订单不存在");
         }

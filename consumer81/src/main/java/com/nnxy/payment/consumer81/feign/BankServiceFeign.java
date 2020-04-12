@@ -101,5 +101,12 @@ public interface BankServiceFeign {
     public R updateFlow(@RequestBody FlowEntity flowEntity);
 
 
+    /**
+     * 通过账户号获取账户
+     * @param accountEntity
+     * @return
+     */
+    @RequestMapping("/bank/account/getAccountById")
+    public R getAccountById(@RequestBody AccountEntity accountEntity);
 
 }
