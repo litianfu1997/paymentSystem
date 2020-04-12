@@ -35,5 +35,21 @@ public interface BankServiceFeign {
     @PostMapping("/bank/account/register")
     public R register(@RequestBody AccountEntity accountEntity);
 
+    /**
+     * 充值
+     * @param accountEntity
+     * @return
+     */
+    @PostMapping("/bank/account/recharge")
+    public R recharge(@RequestBody AccountEntity accountEntity);
+
+    /**
+     * 查询余额
+     * @param accountEntity
+     * @return
+     */
+    @PostMapping("/bank/account/checkingBalance")
+    public R checkingBalance(@RequestBody AccountEntity accountEntity);
+
 
 }

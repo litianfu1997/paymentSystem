@@ -5,6 +5,7 @@ import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.nnxy.bank.entity.AccountEntity;
 import com.nnxy.bank.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,13 +58,54 @@ public class AccountController {
     @PostMapping("/register")
     public R register(@RequestBody AccountEntity accountEntity){
         if (accountEntity.getaAccount() == null || accountEntity.getaPassword() == null) {
-            return R.error(403, "请勿传空参");
+            return R.error(444, "请勿传空参");
         }
         boolean b = accountService.save(accountEntity);
         if (b == false){
             return R.error(444,"用户注册失败");
         }
         return R.ok("用户注册成功");
+    }
+
+    /**
+     * 充值
+     * @param accountEntity
+     * @return
+     */
+    @PostMapping("/recharge")
+    public R recharge(@RequestBody AccountEntity accountEntity){
+        if (accountEntity.getaAccount() == null || accountEntity.getaPassword() == null) {
+            return R.error(444, "请勿传空参");
+        }
+        //先从数据库查询出该账户的余额
+        QueryWrapper<AccountEntity> queryWrapper = new QueryWrapper<>();
+        AccountEntity account = accountService.getOne(queryWrapper.eq("a_account", accountEntity.getaAccount()));
+        //充值 = 之前余额+现在充值数额
+        accountEntity.setaMoney(accountEntity.getaMoney()+account.getaMoney());
+        UpdateWrapper<AccountEntity> wrapper = new UpdateWrapper<>();
+        boolean b = accountService.update(accountEntity,wrapper.eq("a_account", accountEntity.getaAccount()));
+        if (b == false){
+            return R.error(444,"充值失败，请重试！");
+        }
+        return R.ok("充值成功");
+    }
+
+    /**
+     * 查询余额
+     * @param accountEntity
+     * @return
+     */
+    @PostMapping("/checkingBalance")
+    public R checkingBalance(@RequestBody AccountEntity accountEntity){
+        if (accountEntity.getaAccount() == null || accountEntity.getaPassword() == null) {
+            return R.error(444, "请勿传空参");
+        }
+        QueryWrapper<AccountEntity> wrapper = new QueryWrapper<>();
+        AccountEntity account = accountService.getOne(wrapper.eq("a_account", accountEntity.getaAccount()));
+        if (account == null) {
+            return R.error(444, "用户不存在");
+        }
+        return R.ok("余额查询成功").put("money",account.getaMoney());
     }
 
     /**
