@@ -31,6 +31,29 @@ public class ConsumerService {
 
 
     /**
+     * 充值
+     * @param accountEntity
+     * @param flowEntity
+     * @param orderEntity
+     * @return
+     */
+    public R recharge(AccountEntity accountEntity, FlowEntity flowEntity, OrderEntity orderEntity){
+        //生成订单
+        String uuid = UUID.randomUUID().toString();
+        orderEntity.setOrderAccount(uuid);
+        paymentServiceFeign.insert(orderEntity);
+        //3.插入流水
+        long millis = System.currentTimeMillis();
+        flowEntity.setaId(millis);
+        R r = bankServiceFeign.insert(flowEntity);
+        //6.更新订单
+        orderEntity.setFlowId(millis);
+        R r3 = paymentServiceFeign.updateOrder(orderEntity);
+        return bankServiceFeign.recharge(accountEntity);
+
+    }
+
+    /**
      * 支付业务
      *
      * @param accountEntity

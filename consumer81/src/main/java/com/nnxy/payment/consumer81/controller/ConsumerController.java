@@ -56,12 +56,12 @@ public class ConsumerController {
     /**
      * 充值
      *
-     * @param accountEntity
+     * @param allEntity
      * @return
      */
     @PostMapping("/recharge")
-    public R recharge(@RequestBody AccountEntity accountEntity) {
-        return bankServiceFeign.recharge(accountEntity);
+    public R recharge(@RequestBody AllEntity allEntity) {
+        return consumerService.recharge(allEntity.getAccountEntity(),allEntity.getFlowEntity(),allEntity.getOrderEntity());
     }
 
     /**
