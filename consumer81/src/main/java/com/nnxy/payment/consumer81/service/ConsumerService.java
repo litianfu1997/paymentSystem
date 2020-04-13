@@ -10,6 +10,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Date;
 import java.util.UUID;
@@ -31,6 +33,18 @@ public class ConsumerService {
 
 
     /**
+     * 查询订单流水
+     * @param accountEntity
+     * @return
+     */
+    public R orderList( AccountEntity accountEntity){
+        FlowEntity flowEntity = new FlowEntity();
+        flowEntity.setaId(accountEntity.getaId());
+        return bankServiceFeign.getById(flowEntity);
+    }
+
+
+    /**
      * 充值
      * @param accountEntity
      * @param flowEntity
@@ -42,11 +56,12 @@ public class ConsumerService {
         String uuid = UUID.randomUUID().toString();
         orderEntity.setOrderAccount(uuid);
         paymentServiceFeign.insert(orderEntity);
-        //3.插入流水
+        //插入流水
         long millis = System.currentTimeMillis();
-        flowEntity.setaId(millis);
+        flowEntity.setaId(accountEntity.getaId());
+        flowEntity.setfId(millis);
         R r = bankServiceFeign.insert(flowEntity);
-        //6.更新订单
+        //更新订单
         orderEntity.setFlowId(millis);
         R r3 = paymentServiceFeign.updateOrder(orderEntity);
         return bankServiceFeign.recharge(accountEntity);
@@ -78,7 +93,8 @@ public class ConsumerService {
         }
         //3.插入流水
         long millis = System.currentTimeMillis();
-        flowEntity.setaId(millis);
+        flowEntity.setfId(millis);
+        flowEntity.setaId(accountEntity.getaId());
         R r1 = bankServiceFeign.insert(flowEntity);
         //5.扣减余额
         accountEntity.setaMoney(money - flowEntity.getfMoney());

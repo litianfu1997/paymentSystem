@@ -31,9 +31,13 @@ public class ConsumerController {
         return bankServiceFeign.test();
     }
 
+    @PostMapping("/orderList")
+    public R orderList(@RequestBody AccountEntity accountEntity){
+        return consumerService.orderList(accountEntity);
+    }
+
     /**
      * 登录
-     *
      * @param accountEntity
      * @return
      */
