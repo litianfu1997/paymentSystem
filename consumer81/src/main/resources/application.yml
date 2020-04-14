@@ -17,3 +17,15 @@ spring:
         port: 8719
   application:
     name: consumer-service
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+#service-url:
+#  nacos-user-server: http://bank-service,http://payment-service
+
+#feign:
+#  sentinel:
+#    enabled: true

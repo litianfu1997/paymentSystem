@@ -1,6 +1,7 @@
 package com.nnxy.payment.consumer81.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.nnxy.common.utils.R;
 import com.nnxy.payment.consumer81.entitys.AccountEntity;
 import com.nnxy.payment.consumer81.entitys.AllEntity;
@@ -28,12 +29,15 @@ public class ConsumerController {
 
     @GetMapping("/test")
     @SentinelResource(value = "test",blockHandler = "consumerBlockHandlerMethod",fallback = "consumerFallBackMethod")
-    public String test() {
+    public R test() {
         System.out.println("我是consumer，我准备调用bank9001服务");
-        return bankServiceFeign.test();
+//        int i=10/0;
+        String test = bankServiceFeign.test();
+        return R.ok("test ok").put("data",test);
     }
 
     @PostMapping("/orderList")
+    @SentinelResource(value = "orderList",blockHandler = "consumerBlockHandlerMethod",fallback = "consumerFallBackMethod")
     public R orderList(@RequestBody AccountEntity accountEntity){
         return consumerService.orderList(accountEntity);
     }
@@ -44,6 +48,7 @@ public class ConsumerController {
      * @return
      */
     @PostMapping("/login")
+    @SentinelResource(value = "login",blockHandler = "consumerBlockHandlerMethod",fallback = "consumerFallBackMethod")
     public R login(AccountEntity accountEntity) {
         return bankServiceFeign.login(accountEntity);
     }
@@ -55,6 +60,7 @@ public class ConsumerController {
      * @return
      */
     @PostMapping("/register")
+    @SentinelResource(value = "register",blockHandler = "consumerBlockHandlerMethod",fallback = "consumerFallBackMethod")
     public R register(AccountEntity accountEntity) {
         return bankServiceFeign.register(accountEntity);
     }
@@ -66,6 +72,7 @@ public class ConsumerController {
      * @return
      */
     @PostMapping("/recharge")
+    @SentinelResource(value = "recharge",blockHandler = "consumerBlockHandlerMethod",fallback = "consumerFallBackMethod")
     public R recharge(@RequestBody AllEntity allEntity) {
         return consumerService.recharge(allEntity.getAccountEntity(),allEntity.getFlowEntity(),allEntity.getOrderEntity());
     }
@@ -77,6 +84,7 @@ public class ConsumerController {
      * @return
      */
     @PostMapping("/checkingBalance")
+    @SentinelResource(value = "checkingBalance",blockHandler = "consumerBlockHandlerMethod",fallback = "consumerFallBackMethod")
     public R checkingBalance(@RequestBody AccountEntity accountEntity) {
         return bankServiceFeign.checkingBalance(accountEntity);
     }
@@ -85,6 +93,7 @@ public class ConsumerController {
      * 支付
      */
     @PostMapping("/payment")
+    @SentinelResource(value = "payment",blockHandler = "consumerBlockHandlerMethod",fallback = "consumerFallBackMethod")
     public R payment(@RequestBody AllEntity allEntity) {
         System.out.println("支付中。。。。。。。。。。。。。");
         return consumerService.payment(allEntity.getAccountEntity(), allEntity.getFlowEntity(), allEntity.getOrderEntity());
@@ -95,8 +104,8 @@ public class ConsumerController {
      * @return
      */
     @PostMapping("/transfer")
+    @SentinelResource(value = "transfer",blockHandler = "consumerBlockHandlerMethod",fallback = "consumerFallBackMethod")
     public R transfer(@RequestBody AllEntity allEntity) {
-        System.out.println("转账中。。。。。。。。。。。。。。。。");
         return consumerService.transfer(allEntity.getAccountEntity(), allEntity.getTarget(),
                 allEntity.getFlowEntity(), allEntity.getOrderEntity());
     }
@@ -105,11 +114,11 @@ public class ConsumerController {
      * 熔断处理
      * @return
      */
-    public R consumerBlockHandlerMethod(){
+    public R consumerBlockHandlerMethod(BlockException e){
         return R.error(444,"目前服务器太拥挤了，请稍后再试");
     }
 
-    public R consumerFallBackMethod(){
+    public R consumerFallBackMethod(Throwable e){
         return R.error(444,"服务器冒烟了，请稍后再试");
     }
 }
