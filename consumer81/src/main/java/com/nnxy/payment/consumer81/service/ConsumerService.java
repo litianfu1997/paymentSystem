@@ -148,17 +148,17 @@ public class ConsumerService {
         //3.插入流水
         //自己的流水
         long millis1 = System.currentTimeMillis();
-        flowEntity.setaId(millis1);
+        flowEntity.setfId(millis1);
         R r1 = bankServiceFeign.insert(flowEntity);
         //对方的流水
         FlowEntity targetFlowEntity = new FlowEntity();
-        long millis2 = System.currentTimeMillis();
-        targetFlowEntity.setaId(millis2);
         //查找对应账户
         AccountEntity a = new AccountEntity();
         a.setaAccount(target);
         AccountEntity newAccount = bankServiceFeign.getAccountById(a);
         BeanUtils.copyProperties(flowEntity,targetFlowEntity);
+        long millis2 = System.currentTimeMillis();
+        targetFlowEntity.setfId(millis2);
         targetFlowEntity.setaId(newAccount.getaId());
         targetFlowEntity.setfType("收入");
         R r5 = bankServiceFeign.insert(targetFlowEntity);
