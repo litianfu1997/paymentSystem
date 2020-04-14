@@ -7,6 +7,7 @@ import com.nnxy.payment.consumer81.entitys.FlowEntity;
 import com.nnxy.payment.consumer81.entitys.OrderEntity;
 import com.nnxy.payment.consumer81.feign.BankServiceFeign;
 import com.nnxy.payment.consumer81.feign.PaymentServiceFeign;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +41,7 @@ public class ConsumerService {
      * @param accountEntity
      * @return
      */
+    @GlobalTransactional(name = "payment-create-order",rollbackFor = Exception.class)
     public R orderList( AccountEntity accountEntity){
         List<FlowAndOrder> list = new ArrayList<>();
 
@@ -79,6 +81,7 @@ public class ConsumerService {
      * @param orderEntity
      * @return
      */
+    @GlobalTransactional(name = "payment-create-order",rollbackFor = Exception.class)
     public R recharge(AccountEntity accountEntity, FlowEntity flowEntity, OrderEntity orderEntity){
         //生成订单
         String uuid = UUID.randomUUID().toString();
@@ -104,8 +107,7 @@ public class ConsumerService {
      * @param orderEntity
      * @return
      */
-//    @GlobalTransactional
-    @Transactional
+    @GlobalTransactional(name = "payment-create-order",rollbackFor = Exception.class)
     public R payment(AccountEntity accountEntity, FlowEntity flowEntity, OrderEntity orderEntity) {
         //生成订单
         String uuid = UUID.randomUUID().toString();
@@ -149,8 +151,7 @@ public class ConsumerService {
      * @param orderEntity
      * @return
      */
-//    @GlobalTransactional
-    @Transactional
+    @GlobalTransactional(name = "payment-create-order",rollbackFor = Exception.class)
     public R transfer(AccountEntity accountEntity, String target, FlowEntity flowEntity, OrderEntity orderEntity) {
         //生成两个订单
 

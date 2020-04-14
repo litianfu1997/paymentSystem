@@ -27,6 +27,11 @@
             <artifactId>payment-commons</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!--seata-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>com.cedarsoft.serialization</groupId>
