@@ -23,6 +23,10 @@ management:
       exposure:
         include: "*"
 
+feign:
+  httpclient:
+    connection-timeout: 10000
+
 #service-url:
 #  nacos-user-server: http://bank-service,http://payment-service
 
