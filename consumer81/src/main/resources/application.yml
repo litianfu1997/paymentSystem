@@ -3,8 +3,17 @@ server:
 
 spring:
   cloud:
+    alibaba:
+      seata:
+        tx-service-group: payment_tx_group
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        # sentinel dashboard 地址
+        dashboard: localhost:8080
+        # 默认为8719，如果被占用会自动+1，直到找到为止
+        port: 8719
   application:
     name: consumer-service

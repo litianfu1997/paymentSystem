@@ -1,5 +1,6 @@
 package com.nnxy.payment.consumer81.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.nnxy.common.utils.R;
 import com.nnxy.payment.consumer81.entitys.AccountEntity;
 import com.nnxy.payment.consumer81.entitys.AllEntity;
@@ -26,6 +27,7 @@ public class ConsumerController {
     private ConsumerService consumerService;
 
     @GetMapping("/test")
+    @SentinelResource(value = "test",blockHandler = "consumerBlockHandlerMethod",fallback = "consumerFallBackMethod")
     public String test() {
         System.out.println("我是consumer，我准备调用bank9001服务");
         return bankServiceFeign.test();
@@ -99,4 +101,15 @@ public class ConsumerController {
                 allEntity.getFlowEntity(), allEntity.getOrderEntity());
     }
 
+    /**
+     * 熔断处理
+     * @return
+     */
+    public R consumerBlockHandlerMethod(){
+        return R.error(444,"目前服务器太拥挤了，请稍后再试");
+    }
+
+    public R consumerFallBackMethod(){
+        return R.error(444,"服务器冒烟了，请稍后再试");
+    }
 }
