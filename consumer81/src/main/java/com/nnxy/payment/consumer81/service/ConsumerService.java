@@ -2,6 +2,7 @@ package com.nnxy.payment.consumer81.service;
 
 import com.nnxy.common.utils.R;
 import com.nnxy.payment.consumer81.entitys.AccountEntity;
+import com.nnxy.payment.consumer81.entitys.FlowAndOrder;
 import com.nnxy.payment.consumer81.entitys.FlowEntity;
 import com.nnxy.payment.consumer81.entitys.OrderEntity;
 import com.nnxy.payment.consumer81.feign.BankServiceFeign;
@@ -13,7 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -38,9 +41,34 @@ public class ConsumerService {
      * @return
      */
     public R orderList( AccountEntity accountEntity){
+        List<FlowAndOrder> list = new ArrayList<>();
+
         FlowEntity flowEntity = new FlowEntity();
+        OrderEntity orderEntity = new OrderEntity();
         flowEntity.setaId(accountEntity.getaId());
-        return bankServiceFeign.getById(flowEntity);
+        orderEntity.setaId(accountEntity.getaId());
+        //查询该用户所有流水
+        List<FlowEntity> flowEntities = bankServiceFeign.selectByAId(flowEntity);
+        //查询该用户所有订单
+        List<OrderEntity> orderEntities = paymentServiceFeign.selectOrdersByAId(orderEntity);
+        //将订单和流水一一对应组合
+        for (OrderEntity orderItem : orderEntities) {
+            for (FlowEntity flowItem : flowEntities) {
+                if (orderItem.getFlowId().equals(flowItem.getfId())){
+                    FlowAndOrder flowAndOrder = new FlowAndOrder();
+                    flowAndOrder.setOrderId(orderItem.getOrderId());
+                    flowAndOrder.setaId(orderItem.getaId());
+                    flowAndOrder.setfMoney(flowItem.getfMoney());
+                    flowAndOrder.setDescs(orderItem.getDescs());
+                    flowAndOrder.setOrderAccount(orderItem.getOrderAccount());
+                    flowAndOrder.setfType(flowItem.getfType());
+                    flowAndOrder.setfDate(flowItem.getfDate());
+                    list.add(flowAndOrder);
+                }
+            }
+
+        }
+        return R.ok("查询成功").put("list",list);
     }
 
 

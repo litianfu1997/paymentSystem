@@ -109,4 +109,12 @@ public interface BankServiceFeign {
     @RequestMapping("/bank/account/getAccountById")
     public AccountEntity getAccountById(@RequestBody AccountEntity accountEntity);
 
+    /**
+     * 通过aId查询流水信息
+     * @param flowEntity
+     * @return
+     */
+    @PostMapping("/bank/flow/selectByAId")
+    public List<FlowEntity> selectByAId(@RequestBody FlowEntity flowEntity);
+
 }

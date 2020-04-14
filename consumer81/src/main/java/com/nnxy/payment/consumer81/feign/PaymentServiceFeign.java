@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 /**
  * @author litianfu
  * @version 1.0
@@ -57,4 +59,12 @@ public interface PaymentServiceFeign {
      */
     @RequestMapping("/payment/order/getOrderList")
     public R getOrderList(@RequestBody OrderEntity orderEntity);
+
+    /**
+     * 通过aid查询所有订单
+     * @param orderEntity
+     * @return
+     */
+    @PostMapping("/payment/order/selectOrdersByAId")
+    public List<OrderEntity> selectOrdersByAId(@RequestBody OrderEntity orderEntity);
 }

@@ -7,6 +7,7 @@ import java.util.Map;
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +30,13 @@ import com.nnxy.common.utils.R;
 public class OrderController {
     @Autowired
     private OrderService orderService;
+
+    @PostMapping("/selectOrdersByAId")
+    public List<OrderEntity> selectOrdersByAId(@RequestBody OrderEntity orderEntity){
+        QueryWrapper<OrderEntity> wrapper = new QueryWrapper<>();
+        List<OrderEntity> orderEntities = orderService.list(wrapper.eq("a_id", orderEntity.getaId()));
+        return orderEntities;
+    }
 
     /**
      * 新增订单

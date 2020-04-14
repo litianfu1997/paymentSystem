@@ -30,7 +30,12 @@ public class FlowController {
     @Autowired
     private FlowService flowService;
 
-
+    @PostMapping("/selectByAId")
+    public List<FlowEntity> selectByAId(@RequestBody FlowEntity flowEntity){
+        QueryWrapper<FlowEntity> wrapper = new QueryWrapper<>();
+        List<FlowEntity> list = flowService.list(wrapper.eq("a_id", flowEntity.getaId()));
+        return list;
+    }
 
     /**
      * 新增流水
