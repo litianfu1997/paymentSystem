@@ -26,6 +26,10 @@ management:
 feign:
   httpclient:
     connection-timeout: 10000
+#ribbon的超时时间
+ribbon:
+  ReadTimeout: 30000
+  ConnectTimeout: 30000
 
 #service-url:
 #  nacos-user-server: http://bank-service,http://payment-service
