@@ -118,7 +118,7 @@ public class ConsumerService {
         Double money = (Double) balance.get("money");
         //2.比对所支付数额与余额的大小
         if (money - flowEntity.getfMoney() <= 0) {
-            paymentServiceFeign.delete(orderEntity);
+            paymentServiceFeign.deleteOrder(orderEntity);
             return R.error(444, "余额不足，请充值");
         }
         //3.插入流水
@@ -170,8 +170,8 @@ public class ConsumerService {
         Double money = (Double) balance.get("money");
         //2.比对所支付数额与余额的大小
         if (money - flowEntity.getfMoney() <= 0) {
-            paymentServiceFeign.delete(orderEntity);
-            paymentServiceFeign.delete(targetOrderEntity);
+            paymentServiceFeign.deleteOrder(orderEntity);
+            paymentServiceFeign.deleteOrder(targetOrderEntity);
             return R.error(444, "余额不足，请充值");
         }
         //3.插入流水

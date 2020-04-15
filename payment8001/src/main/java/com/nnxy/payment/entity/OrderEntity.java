@@ -1,5 +1,6 @@
 package com.nnxy.payment.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -22,7 +23,7 @@ public class OrderEntity implements Serializable {
 	/**
 	 * 订单id
 	 */
-	@TableId
+	@TableId(type = IdType.AUTO)
 	private Long orderId;
 	/**
 	 * 订单唯一凭证

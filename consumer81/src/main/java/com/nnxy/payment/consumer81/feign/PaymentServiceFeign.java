@@ -32,8 +32,8 @@ public interface PaymentServiceFeign {
      * @param orderEntity
      * @return
      */
-    @DeleteMapping("/payment/order/delete")
-    public R delete(@RequestBody OrderEntity orderEntity);
+    @DeleteMapping("/payment/order/deleteOrder")
+    public R deleteOrder(@RequestBody OrderEntity orderEntity);
 
     /**
      * 通过订单id获取订单

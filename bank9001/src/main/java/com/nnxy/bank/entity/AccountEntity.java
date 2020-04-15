@@ -1,5 +1,6 @@
 package com.nnxy.bank.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -23,7 +24,7 @@ public class AccountEntity implements Serializable {
 	/**
 	 * 账户主键
 	 */
-	@TableId
+	@TableId(type = IdType.AUTO)
 	private Long aId;
 	/**
 	 * 账户号

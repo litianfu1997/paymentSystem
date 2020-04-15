@@ -57,10 +57,10 @@ public class OrderController {
      * @param orderEntity
      * @return
      */
-    @DeleteMapping("/delete")
-    public R delete(@RequestBody OrderEntity orderEntity){
+    @DeleteMapping("/deleteOrder")
+    public R deleteOrder(@RequestBody OrderEntity orderEntity){
         QueryWrapper<OrderEntity> queryWrapper = new QueryWrapper<>();
-        boolean b = orderService.remove(queryWrapper.eq("order_id", orderEntity.getOrderId()));
+        boolean b = orderService.remove(queryWrapper.eq("order_account", orderEntity.getOrderAccount()));
         if (b == false){
             return R.error(444,"删除失败");
         }
@@ -143,7 +143,10 @@ public class OrderController {
     @RequestMapping("/save")
     //@RequiresPermissions("payment:order:save")
     public R save(@RequestBody OrderEntity order){
-		orderService.save(order);
+        boolean b = orderService.save(order);
+        if (b==false){
+            return R.error(444,"保存失败");
+        }
 
         return R.ok();
     }
@@ -165,8 +168,10 @@ public class OrderController {
     @RequestMapping("/delete")
     //@RequiresPermissions("payment:order:delete")
     public R delete(@RequestBody Long[] orderIds){
-		orderService.removeByIds(Arrays.asList(orderIds));
-
+        boolean b = orderService.removeByIds(Arrays.asList(orderIds));
+        if (b==false){
+            return R.error(444,"删除失败");
+        }
         return R.ok();
     }
 
