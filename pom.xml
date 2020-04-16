@@ -15,6 +15,7 @@
         <module>payment8001</module>
         <module>renren-fast</module>
         <module>gateway</module>
+        <module>gateway85</module>
         <module>payment-commons</module>
     </modules>
 

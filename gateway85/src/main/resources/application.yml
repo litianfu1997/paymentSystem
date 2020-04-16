@@ -1,0 +1,35 @@
+spring:
+  cloud:
+    nacos: #nacos服务发现
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      routes:
+        - id: consumer_route #服务消费者接口路由
+          uri: lb://consumer-service
+          predicates:
+            - Path=/consumer/**
+
+        - id: bank_route1 #前端银行服务路由
+          uri: lb://bank-service
+          predicates:
+            - Path=/api/bank/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+        - id: payment_route1 #前端支付服务路由
+          uri: lb://payment-service
+          predicates:
+            - Path=/api/payment/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+        - id: admin_route #管理服务路由
+          uri: lb://renren-fast
+          predicates:
+            - Path=/api/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/renren-fast/$\{segment}
+  application:
+    name: gateway-service
+
+server:
+  port: 85
