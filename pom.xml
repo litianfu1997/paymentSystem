@@ -17,6 +17,8 @@
         <module>gateway</module>
         <module>gateway85</module>
         <module>payment-commons</module>
+        <module>payment8002</module>
+
     </modules>
 
 

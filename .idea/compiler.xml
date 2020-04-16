@@ -13,6 +13,7 @@
         <module name="gateway85" />
         <module name="payment-commons" />
         <module name="payment8001" />
+        <module name="payment8002" />
         <module name="renren-fast" />
       </profile>
     </annotationProcessing>
@@ -30,6 +31,7 @@
       <module name="gateway" options="-parameters" />
       <module name="gateway85" options="-parameters" />
       <module name="payment8001" options="-parameters" />
+      <module name="payment8002" options="-parameters" />
       <module name="renren-fast" options="-parameters" />
     </option>
   </component>

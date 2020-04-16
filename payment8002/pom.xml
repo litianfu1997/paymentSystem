@@ -11,8 +11,8 @@
     <groupId>com.nnxy.payment</groupId>
     <artifactId>payment</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>payment8001</name>
-    <description>支付模块8001</description>
+    <name>payment8002</name>
+    <description>支付模块8002</description>
 
     <properties>
         <java.version>1.8</java.version>
