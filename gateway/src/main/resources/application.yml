@@ -5,6 +5,11 @@ spring:
         server-addr: 127.0.0.1:8848
     gateway:
       routes:
+        - id: consumer_route #服务消费者接口路由
+          uri: lb://consumer-service
+          predicates:
+            - Path=/consumer/**
+
         - id: bank_route1 #前端银行服务路由
           uri: lb://bank-service
           predicates:

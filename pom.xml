@@ -11,6 +11,7 @@
     <modules>
         <module>bank9001</module>
         <module>consumer81</module>
+        <module>consumer82</module>
         <module>payment8001</module>
         <module>renren-fast</module>
         <module>gateway</module>

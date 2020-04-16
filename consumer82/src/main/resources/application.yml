@@ -1,0 +1,39 @@
+server:
+  port: 82
+
+spring:
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: payment_tx_group
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        # sentinel dashboard 地址
+        dashboard: localhost:8080
+        # 默认为8719，如果被占用会自动+1，直到找到为止
+        port: 8719
+  application:
+    name: consumer-service
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+feign:
+  httpclient:
+    connection-timeout: 10000
+#ribbon的超时时间
+ribbon:
+  ReadTimeout: 30000
+  ConnectTimeout: 30000
+
+#service-url:
+#  nacos-user-server: http://bank-service,http://payment-service
+
+#feign:
+#  sentinel:
+#    enabled: true

@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="bank9001" />
         <module name="consumer81" />
+        <module name="consumer82" />
         <module name="gateway" />
         <module name="payment-commons" />
         <module name="payment8001" />
@@ -24,6 +25,7 @@
       <module name="bank9001" options="-parameters" />
       <module name="bank9002" options="-parameters" />
       <module name="consumer81" options="-parameters" />
+      <module name="consumer82" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="payment8001" options="-parameters" />
       <module name="renren-fast" options="-parameters" />
