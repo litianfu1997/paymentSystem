@@ -2,6 +2,7 @@
 <project version="4">
   <component name="Encoding" addBOMForNewFiles="with NO BOM">
     <file url="file://$PROJECT_DIR$/bank9001" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bank9002" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/consumer81" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/consumer82" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gateway" charset="UTF-8" />

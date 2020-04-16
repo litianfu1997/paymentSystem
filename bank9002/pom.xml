@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.nnxy.bank</groupId>
-    <artifactId>bank9001</artifactId>
+    <artifactId>bank9002</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>bank9001</name>
-    <description>银行服务9001</description>
+    <name>bank9002</name>
+    <description>银行服务9002</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -40,9 +40,9 @@
         </dependency>
         <!--freemarker-->
         <!--<dependency>-->
-            <!--<groupId>org.freemarker</groupId>-->
-            <!--<artifactId>freemarker</artifactId>-->
-            <!--<version>2.3.30</version>-->
+        <!--<groupId>org.freemarker</groupId>-->
+        <!--<artifactId>freemarker</artifactId>-->
+        <!--<version>2.3.30</version>-->
         <!--</dependency>-->
         <!--velocity-->
         <dependency>

@@ -7,18 +7,23 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="bank9001" />
+        <module name="bank9002" />
         <module name="consumer81" />
         <module name="consumer82" />
         <module name="gateway" />
         <module name="gateway85" />
         <module name="payment-commons" />
         <module name="payment8001" />
-        <module name="payment8002" />
         <module name="renren-fast" />
+      </profile>
+      <profile name="Annotation profile for paymentSystem" enabled="true">
+        <sourceOutputDir name="../payment8001/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../payment8001/target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="payment8002" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="bank9002" target="1.8" />
       <module name="generator" target="1.5" />
     </bytecodeTargetLevel>
   </component>

@@ -9,11 +9,11 @@
         <option value="$PROJECT_DIR$/consumer81/pom.xml" />
         <option value="$PROJECT_DIR$/bank9001/pom.xml" />
         <option value="$PROJECT_DIR$/payment8002/pom.xml" />
+        <option value="$PROJECT_DIR$/bank9002/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
-        <option value="$PROJECT_DIR$/bank9002/pom.xml" />
         <option value="$PROJECT_DIR$/generator/pom.xml" />
       </set>
     </option>
