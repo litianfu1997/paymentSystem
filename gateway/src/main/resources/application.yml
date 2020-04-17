@@ -32,4 +32,4 @@ spring:
     name: gateway-service
 
 server:
-  port: 86
+  port: 86 #80~86

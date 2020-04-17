@@ -47,6 +47,25 @@
         label="账户余额">
       </el-table-column>
       <el-table-column
+        prop="aName"
+        header-align="center"
+        align="center"
+        label="姓名">
+      </el-table-column>
+      <el-table-column
+        prop="aAge"
+        header-align="center"
+        align="center"
+        label="年龄
+">
+      </el-table-column>
+      <el-table-column
+        prop="aSex"
+        header-align="center"
+        align="center"
+        label="性别">
+      </el-table-column>
+      <el-table-column
         fixed="right"
         header-align="center"
         align="center"

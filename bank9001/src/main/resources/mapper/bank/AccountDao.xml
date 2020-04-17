@@ -9,6 +9,9 @@
         <result property="aAccount" column="a_account"/>
         <result property="aPassword" column="a_password"/>
         <result property="aMoney" column="a_money"/>
+        <result property="aName" column="a_name"/>
+        <result property="aAge" column="a_age"/>
+        <result property="aSex" column="a_sex"/>
     </resultMap>
 
 

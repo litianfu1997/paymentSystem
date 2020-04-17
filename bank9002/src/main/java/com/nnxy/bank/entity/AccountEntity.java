@@ -39,8 +39,38 @@ public class AccountEntity implements Serializable {
 	 */
 	private Double aMoney;
 
+	private String aName;
+
+	private Integer aAge;
+
+	private String aSex;
+
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
+	}
+
+	public String getaName() {
+		return aName;
+	}
+
+	public void setaName(String aName) {
+		this.aName = aName;
+	}
+
+	public Integer getaAge() {
+		return aAge;
+	}
+
+	public void setaAge(Integer aAge) {
+		this.aAge = aAge;
+	}
+
+	public String getaSex() {
+		return aSex;
+	}
+
+	public void setaSex(String aSex) {
+		this.aSex = aSex;
 	}
 
 	public Long getaId() {

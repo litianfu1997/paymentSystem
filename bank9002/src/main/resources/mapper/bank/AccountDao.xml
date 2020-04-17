@@ -3,12 +3,15 @@
 
 <mapper namespace="com.nnxy.bank.dao.AccountDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.nnxy.bank.entity.AccountEntity" id="accountMap">
         <result property="aId" column="a_id"/>
         <result property="aAccount" column="a_account"/>
         <result property="aPassword" column="a_password"/>
         <result property="aMoney" column="a_money"/>
+        <result property="aName" column="a_name"/>
+        <result property="aAge" column="a_age"/>
+        <result property="aSex" column="a_sex"/>
     </resultMap>
 
 

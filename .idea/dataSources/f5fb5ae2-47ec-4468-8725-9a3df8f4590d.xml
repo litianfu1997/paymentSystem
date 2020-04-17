@@ -977,12 +977,31 @@
       <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="245" parent="238" name="PRIMARY">
+    <column id="245" parent="238" name="a_name">
+      <Position>5</Position>
+      <Comment>姓名</Comment>
+      <DataType>varchar(50)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="246" parent="238" name="a_age">
+      <Position>6</Position>
+      <Comment>年龄
+</Comment>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="247" parent="238" name="a_sex">
+      <Position>7</Position>
+      <Comment>性别</Comment>
+      <DataType>varchar(50)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="248" parent="238" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>a_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="246" parent="239" name="f_id">
+    <column id="249" parent="239" name="f_id">
       <Position>1</Position>
       <Comment>流水id</Comment>
       <DataType>bigint(20)|0s</DataType>
@@ -990,39 +1009,39 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="247" parent="239" name="f_money">
+    <column id="250" parent="239" name="f_money">
       <Position>2</Position>
       <Comment>金额</Comment>
       <DataType>double|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="248" parent="239" name="f_type">
+    <column id="251" parent="239" name="f_type">
       <Position>3</Position>
       <Comment>类型</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="249" parent="239" name="a_id">
+    <column id="252" parent="239" name="a_id">
       <Position>4</Position>
       <Comment>账户外键</Comment>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="250" parent="239" name="f_date">
+    <column id="253" parent="239" name="f_date">
       <Position>5</Position>
       <Comment>流水创建时间</Comment>
       <DataType>timestamp|0s</DataType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="251" parent="239" name="PRIMARY">
+    <key id="254" parent="239" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>f_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="252" parent="240" name="id">
+    <column id="255" parent="240" name="id">
       <Position>1</Position>
       <Comment>increment id</Comment>
       <DataType>bigint(20)|0s</DataType>
@@ -1030,67 +1049,67 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="253" parent="240" name="branch_id">
+    <column id="256" parent="240" name="branch_id">
       <Position>2</Position>
       <Comment>branch transaction id</Comment>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="254" parent="240" name="xid">
+    <column id="257" parent="240" name="xid">
       <Position>3</Position>
       <Comment>global transaction id</Comment>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="255" parent="240" name="context">
+    <column id="258" parent="240" name="context">
       <Position>4</Position>
       <Comment>undo_log context,such as serialization</Comment>
       <DataType>varchar(128)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="256" parent="240" name="rollback_info">
+    <column id="259" parent="240" name="rollback_info">
       <Position>5</Position>
       <Comment>rollback info</Comment>
       <DataType>longblob|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="257" parent="240" name="log_status">
+    <column id="260" parent="240" name="log_status">
       <Position>6</Position>
       <Comment>0:normal status,1:defense status</Comment>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="258" parent="240" name="log_created">
+    <column id="261" parent="240" name="log_created">
       <Position>7</Position>
       <Comment>create datetime</Comment>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="259" parent="240" name="log_modified">
+    <column id="262" parent="240" name="log_modified">
       <Position>8</Position>
       <Comment>modify datetime</Comment>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="260" parent="240" name="ux_undo_log">
+    <index id="263" parent="240" name="ux_undo_log">
       <ColNames>xid
 branch_id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="261" parent="240" name="PRIMARY">
+    <key id="264" parent="240" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="262" parent="240" name="ux_undo_log">
+    <key id="265" parent="240" name="ux_undo_log">
       <ColNames>xid
 branch_id</ColNames>
       <UnderlyingIndexName>ux_undo_log</UnderlyingIndexName>
