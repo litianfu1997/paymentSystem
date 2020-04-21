@@ -14,13 +14,9 @@
         <module name="gateway85" />
         <module name="payment-commons" />
         <module name="payment8001" />
-        <module name="renren-fast" />
-      </profile>
-      <profile name="Annotation profile for paymentSystem" enabled="true">
-        <sourceOutputDir name="../payment8001/target/generated-sources/annotations" />
-        <sourceTestOutputDir name="../payment8001/target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
         <module name="payment8002" />
+        <module name="renren-fast" />
+        <module name="syslog" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -38,6 +34,7 @@
       <module name="payment8001" options="-parameters" />
       <module name="payment8002" options="-parameters" />
       <module name="renren-fast" options="-parameters" />
+      <module name="syslog" options="-parameters" />
     </option>
   </component>
 </project>

@@ -7,6 +7,7 @@ import java.util.Map;
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.nnxy.syslog.annotation.Syslog;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -140,6 +141,7 @@ public class OrderController {
     /**
      * 保存
      */
+    @Syslog("保存订单")
     @RequestMapping("/save")
     //@RequiresPermissions("payment:order:save")
     public R save(@RequestBody OrderEntity order){
@@ -155,9 +157,10 @@ public class OrderController {
      * 修改
      */
     @RequestMapping("/update")
+    @Syslog("更新订单")
     //@RequiresPermissions("payment:order:update")
     public R update(@RequestBody OrderEntity order){
-		orderService.updateById(order);
+        orderService.updateById(order);
 
         return R.ok();
     }
@@ -166,6 +169,7 @@ public class OrderController {
      * 删除
      */
     @RequestMapping("/delete")
+    @Syslog("删除订单")
     //@RequiresPermissions("payment:order:delete")
     public R delete(@RequestBody Long[] orderIds){
         boolean b = orderService.removeByIds(Arrays.asList(orderIds));

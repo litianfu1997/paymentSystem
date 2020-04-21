@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.nnxy.bank.entity.FlowEntity;
 import com.nnxy.bank.service.FlowService;
+import com.nnxy.syslog.annotation.Syslog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -135,6 +136,7 @@ public class FlowController {
     /**
      * 保存
      */
+    @Syslog("保存流水")
     @RequestMapping("/save")
     //@RequiresPermissions("bank:flow:save")
     public R save(@RequestBody FlowEntity flow){
@@ -146,6 +148,7 @@ public class FlowController {
     /**
      * 修改
      */
+    @Syslog("修改流水")
     @RequestMapping("/update")
     //@RequiresPermissions("bank:flow:update")
     public R update(@RequestBody FlowEntity flow){
@@ -157,6 +160,7 @@ public class FlowController {
     /**
      * 删除
      */
+    @Syslog("删除流水")
     @RequestMapping("/delete")
     //@RequiresPermissions("bank:flow:delete")
     public R delete(@RequestBody Long[] fIds){

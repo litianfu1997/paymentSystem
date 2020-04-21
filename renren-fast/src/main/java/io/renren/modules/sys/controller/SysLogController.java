@@ -32,7 +32,12 @@ import java.util.Map;
 public class SysLogController {
 	@Autowired
 	private SysLogService sysLogService;
-	
+
+	@GetMapping("/test")
+	public String test(){
+		return "你好啊，我是renren-fast";
+	}
+
 	/**
 	 * 列表
 	 */

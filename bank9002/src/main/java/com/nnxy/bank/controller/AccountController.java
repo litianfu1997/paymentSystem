@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.nnxy.bank.entity.AccountEntity;
 import com.nnxy.bank.entity.FlowEntity;
 import com.nnxy.bank.service.AccountService;
+import com.nnxy.syslog.annotation.Syslog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -154,6 +155,7 @@ public class AccountController {
     /**
      * 保存
      */
+    @Syslog("保存账户")
     @RequestMapping("/save")
     //@RequiresPermissions("bank:account:save")
     public R save(@RequestBody AccountEntity account) {
@@ -166,6 +168,7 @@ public class AccountController {
     /**
      * 修改
      */
+    @Syslog("修改账户")
     @RequestMapping("/update")
     //@RequiresPermissions("bank:account:update")
     public R update(@RequestBody AccountEntity account) {
@@ -177,6 +180,7 @@ public class AccountController {
     /**
      * 删除
      */
+    @Syslog("删除账户")
     @RequestMapping("/delete")
     //@RequiresPermissions("bank:account:delete")
     public R delete(@RequestBody Long[] aIds) {
